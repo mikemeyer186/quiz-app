@@ -12,6 +12,7 @@
 
     <script src="./script.js"></script>
     <script src="./templates.js"></script>
+    <script src="./content.js"></script>
 
 
 </head>
@@ -26,22 +27,22 @@
                 <img src="./img/logo.png" alt="Logo" width="40" height="34" class="d-inline-block align-text-top">
                 <span class="title">Quiz App</span>
             </a>
+            <div id="progress" class="quiz-progress title"></div>
             <div class="points title">18 Punkte</div>
         </div>
     </nav>
 
     <div class="page-wrapper">
 
-        <div class="cards-wrapper">
+        <div id="intro-cards" class="cards-wrapper">
 
             <div class="card no-border" style="width: 18rem;">
                 <img src="./img/compass.jpg" class="card-img-top" alt="Geografie-Quiz">
                 <div class="card-body">
                     <h5 class="card-title">Geografie</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="#" class="btn btn-primary">Quiz starten</a>
+                    <p class="card-text">Du kennst dich auf deinem Heimatplaneten gut aus? Dann beweise es hier und
+                        beantworte Fragen rund um Länder, Flüsse und Gebirge.</p>
+                    <a href="#" class="btn btn-primary" onclick="startQuiz(geoQuiz)">Quiz starten</a>
                 </div>
             </div>
 
@@ -64,6 +65,32 @@
                         card's
                         content.</p>
                     <a href="#" class="btn btn-primary">Quiz starten</a>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="quiz-cards" class="quiz-cards d-none">
+
+            <div class="card quiz-card no-border">
+                <img id="question-image" src="" class="card-img-top quiz-img">
+                <div class="card-body">
+                    <h5 id="question-title" class="card-title">Card title</h5>
+                    <p id="question-text" class="card-text quiz-text">Some quick example text to build on the card title
+                        and make
+                        up the bulk of the
+                        card's content.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li id="question-answer1" class="list-group-item">Antwort 1</li>
+                    <li id="question-answer2" class="list-group-item">Antwort 2</li>
+                    <li id="question-answer3" class="list-group-item">Antwort 3</li>
+                    <li id="question-answer4" class="list-group-item">Antwort 4</li>
+                </ul>
+                <div class="card-body quiz-footer">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
                 </div>
             </div>
 

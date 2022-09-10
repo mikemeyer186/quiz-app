@@ -39,6 +39,50 @@ body {
     transition: all 225ms ease-in-out;
 }
 
+.quiz-card {
+    width: 36rem;
+}
+
+.quiz-card:hover {
+    box-shadow: none;
+    transform: none;
+}
+
+.card-text {
+    text-align: justify;
+}
+
+.quiz-img {
+    height: 150px;
+    object-fit: cover;
+}
+
+.quiz-text {
+    text-align: left;
+
+}
+
+.list-group {
+    margin-top: 10px;
+    margin-bottom: 20px !important;
+}
+
+.list-group-item {
+    text-align: center;
+}
+
+.list-group-item:hover {
+    background-color: rgb(241, 241, 241);
+    cursor: pointer;
+}
+
+.quiz-footer {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+}
+
 .page-wrapper {
     min-width: 100vw;
     min-height: 100vh;
