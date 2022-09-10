@@ -66,3 +66,34 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.fixed-top {
+    z-index: 800 !important;
+}
+
+.popup-bg {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: rgba(80, 80, 80, 0.9);
+}
+
+.modal {
+    transition: all 500ms ease-in-out;
+}
+
+
+.popup-out {
+    top: -300px !important;
+    transition: all 1s ease-in-out;
+}
+
+
+.show-popup {
+    display: block !important;
+}
