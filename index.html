@@ -28,7 +28,7 @@
                 <span class="title">Quiz App</span>
             </a>
             <div id="progress" class="quiz-progress title"></div>
-            <div class="points title">18 Punkte</div>
+            <div id="points" class="points title">0 Punkte</div>
         </div>
     </nav>
 
@@ -76,26 +76,48 @@
             <div class="card quiz-card no-border">
                 <img id="question-image" src="" class="card-img-top quiz-img">
                 <div class="card-body">
-                    <h5 id="question-title" class="card-title">Card title</h5>
                     <p id="question-text" class="card-text quiz-text">Some quick example text to build on the card title
                         and make
                         up the bulk of the
                         card's content.</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li id="question-answer1" class="list-group-item">Antwort 1</li>
-                    <li id="question-answer2" class="list-group-item">Antwort 2</li>
-                    <li id="question-answer3" class="list-group-item">Antwort 3</li>
-                    <li id="question-answer4" class="list-group-item">Antwort 4</li>
+                    <li id="question-answer1" class="list-group-item" onclick="checkAnswer(1)">Antwort 1</li>
+                    <li id="question-answer2" class="list-group-item" onclick="checkAnswer(2)">Antwort 2</li>
+                    <li id="question-answer3" class="list-group-item" onclick="checkAnswer(3)">Antwort 3</li>
+                    <li id="question-answer4" class="list-group-item" onclick="checkAnswer(4)">Antwort 4</li>
                 </ul>
                 <div class="card-body quiz-footer">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <p id="quiz-number" class="card-text quiz-number">Frage</p>
+                    <button id="next-question" class="btn btn-primary" onclick="nextQuestion()" disabled>Nächste
+                        Frage</button>
                 </div>
             </div>
 
         </div>
 
+        <div id="endscreen" class="end-card d-none">
+
+            <div class="card quiz-card no-border">
+                <div class="card-body">
+                    <h3 id="end-text" class="card-text quiz-text">Das war <span id="end-word">spitze</span>!</h3>
+                    <p id="end-sub-text" class="card-text quiz-text">Du hast <b><span id="solved">5</span></b> von
+                        <b><span id="all">5</span></b> Fragen richtig beantwortet.
+                    </p>
+                </div>
+                <div class="card-body quiz-footer">
+                    <button id="retry-quiz" class="btn btn-secondary" onclick="startQuiz(currentQuiz)">Nochmal
+                        probieren</button>
+                    <button id="end-quiz" class="btn btn-primary" onclick="backToMenu()">Anderes Quiz</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <button id="home" class="btn btn-danger button-home d-none" onclick="backToMenu()">Quiz beenden</button>
     </div>
 
 </body>

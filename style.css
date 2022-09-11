@@ -13,6 +13,19 @@ body {
 
 /* reuseable */
 
+.right {
+    background-color: rgba(38, 194, 98, 0.6) !important;
+}
+
+.false {
+    background-color: rgba(195, 82, 82, 0.6) !important;
+
+}
+
+.noclick {
+    pointer-events: none;
+}
+
 .no-border {
     border: none !important;
 }
@@ -58,7 +71,7 @@ body {
 }
 
 .quiz-text {
-    text-align: left;
+    text-align: center;
 
 }
 
@@ -79,8 +92,13 @@ body {
 .quiz-footer {
     display: flex !important;
     flex-direction: row !important;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+}
+
+.quiz-number {
+    margin: 0;
+    font-size: 12px;
 }
 
 .page-wrapper {
@@ -109,6 +127,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 150px;
+}
+
+.points {
+    width: 150px;
+    text-align: right;
 }
 
 .fixed-top {
@@ -140,4 +164,20 @@ body {
 
 .show-popup {
     display: block !important;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.button-home {
+    font-size: 10px !important;
 }
