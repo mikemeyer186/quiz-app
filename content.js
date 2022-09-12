@@ -55,3 +55,5 @@ let geoQuiz = [
         "image": "./img/geo_img_5.jpg"
     }
 ];
+
+let winnerSlogan = ["richtig schlecht", "nicht so gut", "mittelmäßig", "ok", "richtig gut", "spitzenmäßig"];

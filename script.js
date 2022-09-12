@@ -1,13 +1,14 @@
 let currentQuiz = [];
 let currentQuestion = 0;
 let quizPoints = 0;
-let totalPoints = 0;
+let totalPoints;
 
 
 // init function when body loads
 function init() {
     renderPopUps();
     showPopUpBackGround();
+    loadPointsLocal();
 }
 
 
@@ -48,6 +49,7 @@ function startQuiz(quiz) {
     document.getElementById('quiz-cards').classList.remove('d-none');
     document.getElementById('endscreen').classList.add('d-none');
     document.getElementById('home').classList.remove('d-none');
+    document.getElementById('progress-box').classList.remove('d-none');
 
     currentQuiz = quiz;
     quizPoints = 0;
@@ -75,6 +77,7 @@ function showProgress() {
     let solvedQuestions = currentQuestion;
     let progress = ((solvedQuestions) / quizLength) * 100;
     document.getElementById('progress').innerHTML = currentQuiz[currentQuestion]['kategorie'] + ' - ' + progress + '%';
+    document.getElementById('progress-bar').style.width = progress + '%';
 }
 
 
@@ -88,8 +91,8 @@ function checkAnswer(answer) {
         increasePoints();
     } else {
         document.getElementById(`question-answer${answer}`).classList.add('false');
+        document.getElementById(`question-answer${rightAnswer}`).classList.add('right');
     }
-
     noClickEvent();
     button.disabled = false;
 }
@@ -115,7 +118,8 @@ function clickEvent() {
 function increasePoints() {
     quizPoints++;
     totalPoints++;
-    document.getElementById('points').innerHTML = totalPoints + ' Punkte';
+    document.getElementById('points').innerHTML = totalPoints;
+    savePointsLocal();
 }
 
 
@@ -146,6 +150,7 @@ function removeColors() {
 function setStandard() {
     let button = document.getElementById('next-question');
     button.disabled = true;
+    document.getElementById('progress-bar').style.width = '0%';
 
     removeColors();
     clickEvent();
@@ -157,17 +162,28 @@ function endOfQuiz() {
     currentQuestion = 0;
     document.getElementById('quiz-cards').classList.add('d-none');
     document.getElementById('progress').innerHTML = currentQuiz[currentQuestion]['kategorie'] + ' - ' + '100%';
+    document.getElementById('progress-bar').style.width = '100%';
     document.getElementById('endscreen').classList.remove('d-none');
+    document.getElementById('home').classList.add('d-none');
     endScreen();
 }
 
 
 // endscreen points
 function endScreen() {
-    endWord = "super";
+    endWord = endSlogan();
     document.getElementById('end-word').innerHTML = endWord;
     document.getElementById('solved').innerHTML = quizPoints;
     document.getElementById('all').innerHTML = currentQuiz.length;
+}
+
+
+// select slogan for endscreen
+function endSlogan() {
+    let index = quizPoints;
+    let slogan = winnerSlogan[index];
+
+    return slogan;
 }
 
 
@@ -179,4 +195,23 @@ function backToMenu() {
     document.getElementById('endscreen').classList.add('d-none');
     document.getElementById('home').classList.add('d-none');
     document.getElementById('progress').innerHTML = '';
+    document.getElementById('progress-box').classList.add('d-none');
+}
+
+
+// save points in local storage
+function savePointsLocal() {
+    localStorage.setItem('points', totalPoints);
+}
+
+
+// load points from local storage
+function loadPointsLocal() {
+    totalPoints = localStorage.getItem('points');
+
+    if (!totalPoints) {
+        totalPoints = 0;
+    }
+
+    document.getElementById('points').innerHTML = totalPoints;
 }
