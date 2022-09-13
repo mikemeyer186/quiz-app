@@ -3,12 +3,17 @@ let currentQuestion = 0;
 let quizPoints = 0;
 let totalPoints;
 
+let RIGHT = new Audio('./sounds/right_answer.mp3');
+let FALSE = new Audio('./sounds/wrong_answer.mp3');
+let END = new Audio('./sounds/end_game.mp3');
+
 
 // init function when body loads
 function init() {
     renderPopUps();
     showPopUpBackGround();
     loadPointsLocal();
+    unlockQuiz();
 }
 
 
@@ -40,6 +45,29 @@ function closeIntroPopUp() {
     let introPopUp = document.getElementById('intro-popup');
     popUpBackGround.classList.add('d-none');
     introPopUp.classList.remove('show-popup');
+}
+
+
+// check points and unlock buttons of second and third quiz
+function unlockQuiz() {
+    let buttonBio = document.getElementById('button-bio');
+    let buttonTech = document.getElementById('button-tech');
+    let diffPointsBio = 5 - totalPoints;
+    let diffPointsTech = 10 - totalPoints;
+
+    if (totalPoints >= 5) {
+        buttonBio.disabled = false;
+        buttonBio.innerHTML = 'Quiz starten';
+    } else {
+        buttonBio.innerHTML = `Noch ${diffPointsBio} Punkte`;
+    }
+
+    if (totalPoints >= 10) {
+        buttonTech.disabled = false;
+        buttonTech.innerHTML = 'Quiz starten';
+    } else {
+        buttonTech.innerHTML = `Noch ${diffPointsTech} Punkte`;
+    }
 }
 
 
@@ -87,18 +115,33 @@ function checkAnswer(answer) {
     let button = document.getElementById('next-question');
 
     if (answer == rightAnswer) {
-        document.getElementById(`question-answer${answer}`).classList.add('right');
-        increasePoints();
+        correctAnswer(answer);
     } else {
-        document.getElementById(`question-answer${answer}`).classList.add('false');
-        document.getElementById(`question-answer${rightAnswer}`).classList.add('right');
+        wrongAnswer(answer, rightAnswer);
     }
+
     noClickEvent();
     button.disabled = false;
 }
 
 
-// add no click event when answer is selected
+// right answer
+function correctAnswer(answer) {
+    RIGHT.play();
+    document.getElementById(`question-answer${answer}`).classList.add('right');
+    increasePoints();
+}
+
+
+// wrong answer
+function wrongAnswer(answer, rightAnswer) {
+    FALSE.play();
+    document.getElementById(`question-answer${answer}`).classList.add('false');
+    document.getElementById(`question-answer${rightAnswer}`).classList.add('right');
+}
+
+
+// pointer events: none -> when answer is selected
 function noClickEvent() {
     for (let i = 1; i < 5; i++) {
         document.getElementById(`question-answer${i}`).classList.add('noclick');
@@ -106,7 +149,7 @@ function noClickEvent() {
 }
 
 
-// remove no click event
+// pointer events: auto -> new question
 function clickEvent() {
     for (let i = 1; i < 5; i++) {
         document.getElementById(`question-answer${i}`).classList.remove('noclick');
@@ -120,6 +163,7 @@ function increasePoints() {
     totalPoints++;
     document.getElementById('points').innerHTML = totalPoints;
     savePointsLocal();
+    unlockQuiz();
 }
 
 
@@ -128,6 +172,7 @@ function nextQuestion() {
     currentQuestion++;
 
     if (currentQuestion == currentQuiz.length) {
+        END.play();
         endOfQuiz();
     } else {
         setStandard();
@@ -137,7 +182,7 @@ function nextQuestion() {
 }
 
 
-// remove all colors form answers
+// remove all colors from answers
 function removeColors() {
     for (let i = 1; i < 5; i++) {
         document.getElementById(`question-answer${i}`).classList.remove('right');
@@ -146,14 +191,24 @@ function removeColors() {
 }
 
 
-// set click event, colors and buttons to standard
+// set pointer events, colors and buttons to standard -> new question
 function setStandard() {
     let button = document.getElementById('next-question');
     button.disabled = true;
     document.getElementById('progress-bar').style.width = '0%';
 
+    stopPlaySounds();
     removeColors();
     clickEvent();
+}
+
+
+// stop playing sounds when loading new question
+function stopPlaySounds() {
+    FALSE.pause();
+    FALSE.currentTime = 0;
+    RIGHT.pause();
+    RIGHT.currentTime = 0;
 }
 
 
