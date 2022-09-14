@@ -125,14 +125,16 @@ body {
 
 .navbar-brand {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 150px;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
 }
 
 .points {
     width: 150px;
     text-align: right;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
 }
 
 .fixed-top {
@@ -167,7 +169,7 @@ body {
 }
 
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -201,4 +203,104 @@ body {
     color: black;
     z-index: 999;
     transform: translateX(-50%);
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.4);
+    align-items: flex-start !important;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* respnsive section */
+@media(max-width:700px) {
+    .footer {
+        justify-content: center;
+    }
+}
+
+@media(max-width:650px) {
+    .progress {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 70px;
+        margin: auto;
+    }
+
+    .page-wrapper {
+        padding-top: 63px;
+    }
+
+    .points {
+        width: auto;
+    }
+
+    .quiz-card {
+        width: 30rem;
+    }
+
+}
+
+@media(max-width:550px) {
+    .card {
+        width: 90vw !important;
+    }
+
+    .quiz-text {
+        font-size: 14px;
+    }
+
+    .list-group-item {
+        font-size: 14px;
+    }
+}
+
+@media(max-width:400px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .progress {
+        width: 90%;
+    }
+
+    .navbar-brand {
+        margin-right: 4px !important;
+    }
+
+    .points {
+        margin-left: 4px !important;
+    }
+
+    .quiz-footer>button {
+        font-size: 14px;
+    }
+
+    #retry-quiz {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #end-quiz {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+
+@media(max-width:360px) {
+    .quiz-text {
+        font-size: 12px;
+    }
+
+    .list-group-item {
+        font-size: 12px;
+    }
+
+    .quiz-footer>button {
+        font-size: 12px;
+    }
 }

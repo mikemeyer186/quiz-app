@@ -48,26 +48,38 @@ function closeIntroPopUp() {
 }
 
 
-// check points and unlock buttons of second and third quiz
+// check minimum points and unlock quiz
 function unlockQuiz() {
     let buttonBio = document.getElementById('button-bio');
     let buttonTech = document.getElementById('button-tech');
-    let diffPointsBio = 5 - totalPoints;
-    let diffPointsTech = 10 - totalPoints;
 
-    if (totalPoints >= 5) {
-        buttonBio.disabled = false;
-        buttonBio.innerHTML = 'Quiz starten';
-    } else {
-        buttonBio.innerHTML = `Noch ${diffPointsBio} Punkte`;
-    }
+    checkPointsQuiz(buttonBio, 5);
+    checkPointsQuiz(buttonTech, 10);
+}
 
-    if (totalPoints >= 10) {
-        buttonTech.disabled = false;
-        buttonTech.innerHTML = 'Quiz starten';
+
+// check points for new quiz
+function checkPointsQuiz(button, minPoints) {
+    let points = minPoints - totalPoints;
+
+    if (totalPoints >= minPoints) {
+        getNewQuiz(button);
     } else {
-        buttonTech.innerHTML = `Noch ${diffPointsTech} Punkte`;
+        lockedQuiz(button, points);
     }
+}
+
+
+// unlock new quiz
+function getNewQuiz(quizButton) {
+    quizButton.disabled = false;
+    quizButton.innerHTML = 'Quiz starten';
+}
+
+
+// still locked quiz
+function lockedQuiz(quizButton, diffPoints) {
+    quizButton.innerHTML = `Noch ${diffPoints} Punkte`;
 }
 
 
