@@ -3,9 +3,14 @@ let currentQuestion = 0;
 let quizPoints = 0;
 let totalPoints;
 
+
+// Sounds and volume
 let RIGHT = new Audio('./sounds/right_answer.mp3');
 let FALSE = new Audio('./sounds/wrong_answer.mp3');
 let END = new Audio('./sounds/end_game.mp3');
+RIGHT.volume = 0.5;
+FALSE.volume = 0.5;
+END.volume = 0.5;
 
 
 // init function when body loads
@@ -139,6 +144,7 @@ function checkAnswer(answer) {
 
 // right answer
 function correctAnswer(answer) {
+    RIGHT.currentTime = 0;
     RIGHT.play();
     document.getElementById(`question-answer${answer}`).classList.add('right');
     increasePoints();
@@ -147,6 +153,7 @@ function correctAnswer(answer) {
 
 // wrong answer
 function wrongAnswer(answer, rightAnswer) {
+    FALSE.currentTime = 0;
     FALSE.play();
     document.getElementById(`question-answer${answer}`).classList.add('false');
     document.getElementById(`question-answer${rightAnswer}`).classList.add('right');
@@ -184,6 +191,7 @@ function nextQuestion() {
     currentQuestion++;
 
     if (currentQuestion == currentQuiz.length) {
+        END.currentTime = 0;
         END.play();
         endOfQuiz();
     } else {
@@ -209,18 +217,8 @@ function setStandard() {
     button.disabled = true;
     document.getElementById('progress-bar').style.width = '0%';
 
-    stopPlaySounds();
     removeColors();
     clickEvent();
-}
-
-
-// stop playing sounds when loading new question
-function stopPlaySounds() {
-    FALSE.pause();
-    FALSE.currentTime = 0;
-    RIGHT.pause();
-    RIGHT.currentTime = 0;
 }
 
 

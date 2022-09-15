@@ -9,6 +9,7 @@ html {
 body {
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 /* reuseable */
@@ -38,6 +39,7 @@ body {
 
 .card {
     transition: all 225ms ease-in-out;
+    z-index: 500 !important;
 }
 
 .card-body {
@@ -54,11 +56,17 @@ body {
 
 .quiz-card {
     width: 36rem;
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: auto;
+    transform: translateY(-45%);
 }
 
-.quiz-card:hover {
+.no-hover:hover {
     box-shadow: none;
-    transform: none;
+    transform: translateY(-45%);
 }
 
 .card-text {
@@ -102,16 +110,17 @@ body {
 }
 
 .page-wrapper {
-    min-width: 100vw;
+    width: 100vw;
     min-height: 100vh;
     background-image: url(./img/earth.jpg);
     background-size: cover;
     background-position: bottom;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 80px 100px 10px 100px;
+    padding: 80px 100px 80px 100px;
 }
 
 .cards-wrapper {
@@ -178,6 +187,7 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    z-index: 100;
 }
 
 .button-home {
@@ -226,8 +236,9 @@ body {
         position: absolute;
         left: 0;
         right: 0;
-        top: 70px;
+        top: 60px;
         margin: auto;
+        width: 30rem;
     }
 
     .page-wrapper {
@@ -242,6 +253,9 @@ body {
         width: 30rem;
     }
 
+    .quiz-img {
+        height: 120px;
+    }
 }
 
 @media(max-width:550px) {
@@ -256,15 +270,15 @@ body {
     .list-group-item {
         font-size: 14px;
     }
+
+    .progress {
+        width: 90%;
+    }
 }
 
 @media(max-width:400px) {
     .title {
         font-size: 20px;
-    }
-
-    .progress {
-        width: 90%;
     }
 
     .navbar-brand {
@@ -302,5 +316,20 @@ body {
 
     .quiz-footer>button {
         font-size: 12px;
+    }
+}
+
+@media(max-height: 550px) {
+    .quiz-card {
+        position: static !important;
+        transform: none;
+    }
+
+    .quiz-card:hover {
+        transform: none;
+    }
+
+    .footer {
+        position: absolute;
     }
 }

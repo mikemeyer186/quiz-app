@@ -175,4 +175,4 @@ let techQuiz = [
 ];
 
 
-let winnerSlogan = ["richtig schlecht", "nicht so gut", "mittelmäßig", "ok", "richtig gut", "spitzenmäßig"];
+let winnerSlogan = ["leider nichts", "nicht so gut", "mittelmäßig", "ok", "richtig gut", "spitzenmäßig"];
