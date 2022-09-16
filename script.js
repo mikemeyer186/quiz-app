@@ -15,17 +15,20 @@ END.volume = 0.5;
 
 // init function when body loads
 function init() {
-    renderPopUps();
-    showPopUpBackGround();
     loadPointsLocal();
     unlockQuiz();
+    renderPopUps();
+    showPopUpBackGround();
 }
 
 
-// render all popups when laoding the page
+// render popup when laoding the page and totalpoints = 0
 function renderPopUps() {
     let popUpContent = document.getElementById('popup-content');
-    popUpContent.innerHTML = introPopUpTemplate();
+
+    if (totalPoints < 1) {
+        popUpContent.innerHTML = introPopUpTemplate();
+    }
 }
 
 

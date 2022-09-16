@@ -12,8 +12,6 @@ body {
     position: relative;
 }
 
-/* reuseable */
-
 .right {
     background-color: rgba(38, 194, 98, 0.6) !important;
 }
@@ -49,8 +47,7 @@ body {
 
 
 .card:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    transform: scale(1.01);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     transition: all 225ms ease-in-out;
 }
 
